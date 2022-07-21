@@ -1,0 +1,129 @@
+
+
+
+<!-- <div class="container-fluid">
+    <div class="row">
+      <div class="mb-3">
+        <a class="card" target="_blank" rel="noopener" >
+          <span>Total Confirmed Cases {{covidresult['statewise'][0]['confirmed']}}</span>
+         </a>
+       </div>
+      <div class="mb-3">
+        <a class="card" target="_blank" rel="noopener" >
+          <span>Total Active Cases {{covidresult['statewise'][0]['active']}}</span>
+        </a>
+      </div>
+      <div class="mb-3">
+        <a class="card" target="_blank" rel="noopener" >
+          <span>Total Recovered Cased {{covidresult['statewise'][0]['recovered']}}</span>
+         </a>
+      </div>  
+      <div class="mb-3">
+        <a class="card" target="_blank" rel="noopener" >
+          <span>Total Recovered Cased {{covidresult['statewise'][0]['deaths']}}</span>
+         </a>
+      </div>   
+    </div>
+  
+</div> -->
+
+
+
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+
+  <span>Task</span>
+
+</div><br><br><br><br><br><br>
+
+<div class="content">
+  <!-- Highlight Card -->
+  <div class="header">
+    <h1>Covid19 Tracker</h1>
+</div><br>
+  <!-- Resources -->
+  <h2>Overall Report</h2>
+
+  <div class="card-container">
+    <a class="card" target="_blank" rel="noopener" >
+      <span>Total Confirmed Cases {{covidresult['statewise'][0]['confirmed']}}</span>
+     </a>
+
+    <a class="card" target="_blank" rel="noopener" >
+     <span>Total Active Cases {{covidresult['statewise'][0]['active']}}</span>
+ </a>
+
+    <a class="card" target="_blank" rel="noopener" >
+       <span>Total Recovered Cased {{covidresult['statewise'][0]['recovered']}}</span>
+      </a>
+
+    <a class="card" target="_blank" rel="noopener" >
+        <span>Total Death Blog {{covidresult['statewise'][0]['deaths']}}</span>
+      </a>
+
+  </div>
+
+</div><br><br>
+
+<!-- <div>
+  <select>
+    <option>-----Select State--------</option>
+    <option *ngFor="let covid of covidresult['statewise']">{{covid['state']}}</option>
+  </select>
+</div> -->
+
+<h2>State Wise Report</h2>
+<div *ngIf="!covidresult.error" style="overflow-x:auto;">
+  <table class="center">
+   
+      <tr>
+          
+          <th>State</th>
+          <th>Last Updated Date Time</th>
+          <th>Confirmed Cases</th>
+          <th>Active Cases</th>
+          <th>Recovered Cases</th>
+          <th>Death Cases</th>
+      </tr>
+      <tr *ngFor="let covid of covidresult['statewise']; index as i;" [style]="(i==0) ? 'display:none': ''">
+          <td>
+{{covid.state}}
+          </td>
+
+          <td>
+{{covid.lastupdatedtime}}
+          </td>
+
+          <td>
+{{covid.confirmed}}
+          </td>
+
+          <td>
+{{covid.active}}
+          </td>
+
+          <td>
+{{covid.recovered}}
+          </td>
+
+          <td>
+{{covid.deaths}}
+          </td>
+      </tr>
+     
+  </table>
+</div>
+<div  *ngIf="covidresult.error">
+{{covidresult.message}}
+</div>
+
+
+
+
+
+
+
+
+
+<router-outlet></router-outlet>
